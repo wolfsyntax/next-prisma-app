@@ -3,12 +3,29 @@ model User {
   firstName       String    @map("first_name")
   lastName        String?   @map("last_name")
   email           String    @unique
+  phone           String    @unique
+  // bio             String    @db.Text
+  date_of_birth   DateTime? @db.Date
+  // account_type    AccountType @default(Child)
   photoUrl        String?   @map("photo_url")
   password        String?
+  // firebaseUid     String    @unique @map("firebase_uid")
   emailVerifiedAt DateTime? @map("email_verified_at")
+  rememberToken   String?   @db.VarChar(100)
+  lastLogin       DateTime? @default(now()) @map("last_login")
   createdAt       DateTime  @default(now()) @map("created_at")
   updatedAt       DateTime  @updatedAt @map("updated_at")
   deletedAt       DateTime? @map("deleted_at")
+  // profiles        Profile[]
+  // media           Media[]
+  // mediaCollections Collection[]
+  // media            Media[]
+  accounts        Account[]
 
   @@map("users")
 }
+
+// enum AccountType {
+//   Adult @map("adult")
+//   Child @map("child")
+// }
