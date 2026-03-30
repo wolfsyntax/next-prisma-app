@@ -1,0 +1,34 @@
+model Media {
+  id             String         @id @default(cuid())
+  profileId      String         @map("profile_id")
+  profile        Profile        @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  mediaType      MediaType      @map("type")
+  category       Category
+  file_path      String?
+  thumbnail_path String?
+  duration       Int?           @default(0)
+  size           Decimal?       @default(0)
+  visibility     VisibilityType
+  createdAt      DateTime       @default(now())
+  //   collectionItems CollectionItems[]
+}
+
+enum MediaType {
+  photo
+  video
+  audio
+  document
+}
+
+enum VisibilityType {
+  public
+  private
+  friends
+}
+
+enum Category {
+  photos
+  videos
+  songs
+  events
+}
