@@ -1,23 +1,23 @@
 model Profile {
-  id           String        @id @default(cuid())
-  userId       String        @map("user_id")
-  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id           String    @id @default(cuid())
+  userId       String    @map("user_id")
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   name         String
-  username     String        @unique
+  username     String    @unique
   // avatarMediaId String?    @map("avatar_media_id")
   // avatarMedia   Media      @relation("AvatarMedia", fields: [avatarMediaId], references: [id], onDelete: SetNull)
   // coverPhotoId  String?    @map("cover_media_id")
   // coverPhoto   Media      @relation("CoverPhoto", fields: [coverPhotoId], references: [id], onDelete: SetNull)
-  bio          String        @db.Text
+  bio          String    @db.Text
   location     String
   hometown     String
-  phone        String?
-  email        String?
-  phonePrivacy PrivacyStatus @default(OnlyMe) @map("phone_privacy")
-  emailPrivacy PrivacyStatus @default(OnlyMe) @map("email_privacy")
-  lastAccessed DateTime      @default(now()) @map("last_accessed")
-  createdAt    DateTime      @default(now()) @map("created_at")
-  deletedAt    DateTime?     @map("deleted_at")
+  //   phone        String?
+  //   email        String?
+  //   phonePrivacy PrivacyStatus @default(OnlyMe) @map("phone_privacy")
+  //   emailPrivacy PrivacyStatus @default(OnlyMe) @map("email_privacy")
+  lastAccessed DateTime  @default(now()) @map("last_accessed")
+  createdAt    DateTime  @default(now()) @map("created_at")
+  deletedAt    DateTime? @map("deleted_at")
 
   @@map("profiles")
 }
