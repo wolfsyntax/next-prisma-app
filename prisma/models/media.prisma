@@ -10,7 +10,9 @@ model Media {
   size           Decimal?       @default(0)
   visibility     VisibilityType
   createdAt      DateTime       @default(now())
+
   //   collectionItems CollectionItems[]
+  @@map("media")
 }
 
 enum MediaType {
