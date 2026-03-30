@@ -21,6 +21,7 @@ model User {
   // mediaCollections Collection[]
   // media            Media[]
   accounts        Account[]
+  profiles        Profile[]
 
   @@map("users")
 }
