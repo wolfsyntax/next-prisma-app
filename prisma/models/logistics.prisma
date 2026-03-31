@@ -1,0 +1,6 @@
+model Logistic {
+  id   String @id @default(cuid())
+  name String
+
+  @@map("logistics")
+}

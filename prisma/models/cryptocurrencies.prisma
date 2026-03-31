@@ -1,0 +1,10 @@
+model Crypto {
+  id        String   @id @default(cuid())
+  symbol    String
+  name      String
+  price     Decimal  @db.Decimal(11, 2)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("crypto_currencies")
+}

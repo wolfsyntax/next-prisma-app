@@ -1,0 +1,9 @@
+model Bid {
+  id        String   @id @default(cuid())
+  bidderId  String   @map("bidder_id")
+  amount    Decimal  @db.Decimal(11, 2)
+  createdAt DateTime @default(now())
+  bidder    User     @relation(fields: [bidderId], references: [id], onDelete: Cascade)
+
+  @@map("bids")
+}

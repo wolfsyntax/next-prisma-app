@@ -18,6 +18,7 @@ model Media {
   communities     Community[]
   postMedias      PostMedia[]
   stories         Story[]
+  productMedias   ProductMedia[]
 
   //   collectionItems CollectionItems[]
   @@map("media")

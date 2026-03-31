@@ -1,0 +1,9 @@
+model ProductMedia {
+  productId String  @map("product_id")
+  mediaId   String  @map("media_id")
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  media     Media   @relation(fields: [mediaId], references: [id], onDelete: Cascade)
+
+  @@unique([productId, mediaId])
+  @@map("product_media")
+}

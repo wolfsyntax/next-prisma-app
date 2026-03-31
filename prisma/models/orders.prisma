@@ -1,0 +1,22 @@
+model Order {
+  id          String      @id @default(cuid())
+  buyerId     String
+  totalAmount Decimal     @db.Decimal(11, 2)
+  status      OrderStatus @default(Pending)
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+  user      User      @relation(fields: [buyerId], references: [id], onDelete: Cascade)
+
+  @@map("orders")
+}
+
+enum OrderStatus {
+  Pending    @map("pending")
+  Confirmed  @map("confirmed")
+  Processing @map("processing")
+  Shipped    @map("shipped")
+  Delivered  @map("delivered")
+  Cancelled  @map("cancelled")
+}

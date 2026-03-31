@@ -1,0 +1,12 @@
+model Auction {
+  id         String    @id @default(cuid())
+  productId  String    @map("product_id")
+  startPrice Decimal   @map("start_price") @db.Decimal(11, 2)
+  finalPrice Decimal?  @default(0.00) @map("final_price") @db.Decimal(11, 2)
+  soldAt     DateTime? @map("sold_at")
+  createdAt  DateTime  @default(now()) @map("created_at")
+  deletedAt  DateTime?
+  product    Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@map("auctions")
+}
