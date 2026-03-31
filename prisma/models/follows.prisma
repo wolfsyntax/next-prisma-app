@@ -4,7 +4,7 @@ model Follow {
 
   follower  Profile  @relation("followers", fields: [followerId], references: [id], onDelete: Cascade)
   following Profile  @relation("following", fields: [followingId], references: [id], onDelete: Cascade)
-  createdAt DateTime @default(now())
+  createdAt DateTime @default(now()) @map("created_at")
 
   @@unique([followerId, followingId])
   @@map("follows")

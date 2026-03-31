@@ -5,7 +5,7 @@ model Education {
   startDate          DateTime  @map("start_at") @db.Date
   endDate            DateTime? @map("end_at") @db.Date
   graduated          Boolean   @default(false) @map("is_graduated")
-  fieldOfStudy       String?
+  fieldOfStudy       String?   @map("attainment")
   dorm               String?
   description        String?   @db.Text
   activitiesInvolved Json      @map("activities_involved")

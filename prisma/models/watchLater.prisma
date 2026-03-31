@@ -1,0 +1,10 @@
+model WatchLater {
+  profileId String   @map("profile_id")
+  videoId   String   @map("video_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  viewer    Profile  @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  video     Video    @relation(fields: [videoId], references: [id], onDelete: Cascade)
+
+  @@unique([profileId, videoId])
+  @@map("watch_later")
+}

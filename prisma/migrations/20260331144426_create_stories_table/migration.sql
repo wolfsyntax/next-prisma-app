@@ -3,7 +3,7 @@ CREATE TABLE `stories` (
     `id` VARCHAR(191) NOT NULL,
     `profile_id` VARCHAR(191) NOT NULL,
     `media_id` VARCHAR(191) NOT NULL,
-    `expiredAt` DATETIME(3) NULL,
+    `expired_at` DATETIME(3) NULL,
     `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
     PRIMARY KEY (`id`)

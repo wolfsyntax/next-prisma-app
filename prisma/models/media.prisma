@@ -8,7 +8,7 @@ model Media {
   duration       Int?           @default(0)
   size           Decimal?       @default(0)
   visibility     VisibilityType
-  createdAt      DateTime       @default(now())
+  createdAt      DateTime       @default(now()) @map("created_at")
 
   profile         Profile          @relation(fields: [profileId], references: [id], onDelete: Cascade)
   avatarFor       Profile[]        @relation("AvatarMedia")
@@ -19,6 +19,7 @@ model Media {
   postMedias      PostMedia[]
   stories         Story[]
   productMedias   ProductMedia[]
+  gifts           Gift[]
 
   //   collectionItems CollectionItems[]
   @@map("media")

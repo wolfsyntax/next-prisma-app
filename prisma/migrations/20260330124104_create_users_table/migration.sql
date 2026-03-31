@@ -9,7 +9,7 @@ CREATE TABLE `users` (
     `photo_url` VARCHAR(191) NULL,
     `password` VARCHAR(191) NULL,
     `email_verified_at` DATETIME(3) NULL,
-    `rememberToken` VARCHAR(100) NULL,
+    `remember_token` VARCHAR(100) NULL,
     `last_login` DATETIME(3) NULL DEFAULT CURRENT_TIMESTAMP(3),
     `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updated_at` DATETIME(3) NOT NULL,

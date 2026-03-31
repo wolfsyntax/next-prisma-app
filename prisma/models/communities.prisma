@@ -14,6 +14,7 @@ model Community {
   profile             Profile?         @relation(fields: [ownerId], references: [id])
   media               Media?           @relation(fields: [coverMediaId], references: [id])
   posts               Post[]
+  bans                Ban[]
 
   @@map("communities")
 }

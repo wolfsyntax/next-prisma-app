@@ -5,8 +5,8 @@
 
 */
 -- AlterTable
-ALTER TABLE `media` DROP COLUMN `create_at`,
-    ADD COLUMN `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3);
+ALTER TABLE `media` DROP COLUMN `created_at`,
+    ADD COLUMN `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3);
 
 -- CreateTable
 CREATE TABLE `educations` (
@@ -16,7 +16,7 @@ CREATE TABLE `educations` (
     `start_at` DATE NOT NULL,
     `end_at` DATE NULL,
     `is_graduated` BOOLEAN NOT NULL DEFAULT false,
-    `fieldOfStudy` VARCHAR(191) NULL,
+    `attainment` VARCHAR(191) NULL,
     `dorm` VARCHAR(191) NULL,
     `description` TEXT NULL,
     `activities_involved` JSON NOT NULL,

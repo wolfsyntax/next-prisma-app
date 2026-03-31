@@ -9,7 +9,7 @@ CREATE TABLE `Media` (
     `duration` INTEGER NULL DEFAULT 0,
     `size` DECIMAL(65, 30) NULL DEFAULT 0,
     `visibility` ENUM('public', 'private', 'friends') NOT NULL,
-    `create_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

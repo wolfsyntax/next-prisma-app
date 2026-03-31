@@ -5,7 +5,7 @@ model Auction {
   finalPrice Decimal?  @default(0.00) @map("final_price") @db.Decimal(11, 2)
   soldAt     DateTime? @map("sold_at")
   createdAt  DateTime  @default(now()) @map("created_at")
-  deletedAt  DateTime?
+  deletedAt  DateTime? @map("deleted_at")
   product    Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
 
   @@map("auctions")

@@ -3,8 +3,8 @@ model Profile {
   user_id       String
   name          String
   username      String    @unique
-  avatarMediaId String?
-  coverPhotoId  String?
+  avatarMediaId String?   @map("avatar_id")
+  coverPhotoId  String?   @map("cover_photo_id")
   bio           String?
   location      String?
   hometown      String?
@@ -31,11 +31,15 @@ model Profile {
   posts         Post[]
   comments      Comment[]
 
-  followers     Follow[]       @relation("followers")
-  following     Follow[]       @relation("following")
-  reactions     Reaction[]
-  stories       Story[]
-  subscriptions Subscription[]
+  followers         Follow[]           @relation("followers")
+  following         Follow[]           @relation("following")
+  reactions         Reaction[]
+  stories           Story[]
+  subscriptions     Subscription[]
+  watchHistories    WatchHistory[]
+  conversationUsers ConversationUser[]
+  watchLaters       WatchLater[]
+  bans              Ban[]
 
   @@map("profiles")
 }

@@ -1,10 +1,10 @@
 model Subscription {
-  profileId String
-  channelId String
+  profileId String @map("profile_id")
+  channelId String @map("channel_id")
 
   profile   Profile  @relation(fields: [profileId], references: [id], onDelete: Cascade)
   channel   Channel  @relation(fields: [channelId], references: [id], onDelete: Cascade)
-  createdAt DateTime @default(now())
+  createdAt DateTime @default(now()) @map("created_at")
 
   @@unique([profileId, channelId])
   @@map("subscriptions")

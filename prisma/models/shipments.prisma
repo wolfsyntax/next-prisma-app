@@ -1,0 +1,28 @@
+model Shipment {
+  id             String         @id @default(cuid())
+  orderId        String         @map("order_id")
+  courierId      String         @map("courier_id")
+  trackingNumber String         @map("tracking_number")
+  status         ShipmentStatus @default(Pending)
+  remark         String?
+  createdAt      DateTime       @default(now()) @map("created_at")
+  updatedAt      DateTime       @updatedAt @map("updated_at")
+  deletedAt      DateTime?      @map("deleted_at")
+
+  order   Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  courier Logistic @relation(fields: [courierId], references: [id], onDelete: Cascade)
+
+  @@map("shipments")
+}
+
+enum ShipmentStatus {
+  Pending        @map("pending") // label created, not yet packed
+  Packed         @map("packed") // item prepared
+  PickedUp       @map("picked-up") // courier picked it up
+  InTransit      @map("in-transit") // moving between hubs
+  OutForDelivery @map("out-for-delivery")
+  Delivered      @map("delivered")
+  FailedDelivery @map("failed-delivery")
+  Returned       @map("returned")
+  Cancelled      @map("cancelled")
+}

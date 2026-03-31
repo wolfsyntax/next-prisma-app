@@ -1,0 +1,10 @@
+model Gift {
+  id        String    @id @default(cuid())
+  name      String
+  price     Decimal   @db.Decimal(11, 2)
+  mediaId   String?   @map("media_id")
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+  media     Media?    @relation(fields: [mediaId], references: [id], onDelete: SetNull)
+}

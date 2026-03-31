@@ -1,13 +1,17 @@
 model Order {
   id          String      @id @default(cuid())
-  buyerId     String
-  totalAmount Decimal     @db.Decimal(11, 2)
+  buyerId     String      @map("buyer_id")
+  totalAmount Decimal     @map("total_amount") @db.Decimal(11, 2)
   status      OrderStatus @default(Pending)
+  deliveryAt  DateTime?   @map("delivery_at")
+  notes       String?     @db.Text
 
-  createdAt DateTime  @default(now()) @map("created_at")
-  updatedAt DateTime  @updatedAt @map("updated_at")
-  deletedAt DateTime? @map("deleted_at")
-  user      User      @relation(fields: [buyerId], references: [id], onDelete: Cascade)
+  createdAt  DateTime     @default(now()) @map("created_at")
+  updatedAt  DateTime     @updatedAt @map("updated_at")
+  deletedAt  DateTime?    @map("deleted_at")
+  user       User         @relation(fields: [buyerId], references: [id], onDelete: Cascade)
+  orderItems OrderItems[]
+  shipments  Shipment[]
 
   @@map("orders")
 }

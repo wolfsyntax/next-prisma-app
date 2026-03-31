@@ -11,6 +11,7 @@ model Product {
   user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
   productMedias ProductMedia[]
   auctions      Auction[]
+  orderItems    OrderItems[]
 
   @@map("products")
 }

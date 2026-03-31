@@ -1,0 +1,9 @@
+model ConversationUser {
+  id             String       @id @default(cuid())
+  conversationId String       @map("conversation_id")
+  profileId      String       @map("profile_id")
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  profile        Profile      @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@map("conversation_user")
+}

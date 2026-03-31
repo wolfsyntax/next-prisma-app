@@ -1,11 +1,11 @@
 model Report {
   id             String           @id @default(cuid())
-  reporterId     String
-  reportableId   String?
-  reportableType ReportType       @default(Post)
+  reporterId     String           @map("reporter_id")
+  reportableId   String?          @map("reportable_id")
+  reportableType ReportType       @default(Post) @map("reportable_type")
   reason         String?
   status         ResolutionStatus @default(Pending)
-  createdAt      DateTime         @default(now())
+  createdAt      DateTime         @default(now()) @map("created_at")
   reporter       Profile          @relation(fields: [reporterId], references: [id], onDelete: Cascade)
 
   @@map("reports")
