@@ -1,25 +1,38 @@
 model Profile {
-  id           String        @id @default(cuid())
-  userId       String        @map("user_id")
-  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-  name         String
-  username     String        @unique
-  // avatarMediaId String?    @map("avatar_media_id")
-  // avatarMedia   Media      @relation("AvatarMedia", fields: [avatarMediaId], references: [id], onDelete: SetNull)
-  // coverPhotoId  String?    @map("cover_media_id")
-  // coverPhoto   Media      @relation("CoverPhoto", fields: [coverPhotoId], references: [id], onDelete: SetNull)
-  bio          String        @db.Text
-  location     String
-  hometown     String
-  //   phone        String?
-  //   email        String?
-  //   phonePrivacy PrivacyStatus @default(OnlyMe) @map("phone_privacy")
-  //   emailPrivacy PrivacyStatus @default(OnlyMe) @map("email_privacy")
-  lastAccessed DateTime      @default(now()) @map("last_accessed")
-  createdAt    DateTime      @default(now()) @map("created_at")
-  deletedAt    DateTime?     @map("deleted_at")
-  medias       Media[]
-  contactInfos ContactInfo[]
+  id            String    @id @default(cuid())
+  user_id       String
+  name          String
+  username      String    @unique
+  avatarMediaId String?
+  coverPhotoId  String?
+  bio           String?
+  location      String?
+  hometown      String?
+  last_accessed DateTime?
+  created_at    DateTime  @default(now())
+  deleted_at    DateTime?
+
+  // FK to Media (avatar & cover)
+  avatar     Media?      @relation("AvatarMedia", fields: [avatarMediaId], references: [id])
+  coverPhoto Media?      @relation("CoverMedia", fields: [coverPhotoId], references: [id])
+  education  Education[]
+
+  // Relations
+  user          User          @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  media         Media[]
+  contact_infos ContactInfo[]
+  reports       Report[]
+  appUsages     AppUsage[]
+  collections   Collection[]
+  channels      Channel[]
+  videos        Video[]
+  communities   Community[]
+  // posts         Post[]
+  posts         Post[]
+  comments      Comment[]
+
+  followers Follow[] @relation("followers")
+  following Follow[] @relation("following")
 
   @@map("profiles")
 }

@@ -1,0 +1,21 @@
+model Education {
+  id                 String    @id @default(cuid())
+  profileId          String    @map("profile_id")
+  universityName     String    @map("university_name")
+  startDate          DateTime  @map("start_at") @db.Date
+  endDate            DateTime? @map("end_at") @db.Date
+  graduated          Boolean   @default(false) @map("is_graduated")
+  fieldOfStudy       String?
+  dorm               String?
+  description        String?   @db.Text
+  activitiesInvolved Json      @map("activities_involved")
+  classTaken         Json      @map("class_taken")
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updateAt  DateTime  @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@map("educations")
+}

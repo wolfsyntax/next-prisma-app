@@ -1,0 +1,42 @@
+model Post {
+  id           String             @id @default(cuid())
+  profileId    String?            @map("profile_id")
+  communityId  String?            @map("community_id")
+  content      String             @db.Text
+  type         PostType           @default(Post)
+  status       PostApprovalStatus @default(Approved)
+  visibility   PostVisibility     @default(Public)
+  exceptions   Json // Friends Except
+  allowedUsers Json               @map("allowed_users") // Specific Friends
+  // exceptions String[] // Friends Except
+  // allowedUsers String[] @map("allowed_users") // Specific Friends
+  isAnonymous  Boolean            @default(false) @map("is_anonymous")
+  createdAt    DateTime           @default(now()) @map("created_at")
+  updatedAt    DateTime           @updatedAt @map("updated_at")
+  deletedAt    DateTime?          @map("deleted_at")
+  profile      Profile?           @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  community    Community?         @relation(fields: [communityId], references: [id], onDelete: Cascade)
+  postMedias   PostMedia[]
+
+  @@map("posts")
+}
+
+enum PostType {
+  Post  @map("post")
+  Story @map("story")
+  Short @map("short")
+}
+
+enum PostVisibility {
+  Public
+  Friends
+  FriendsExcept
+  SpecificFriends
+  OnlyMe
+}
+
+enum PostApprovalStatus {
+  Pending  @map("pending")
+  Approved @map("approved")
+  Rejected @map("rejected")
+}

@@ -1,0 +1,11 @@
+model CollectionItem {
+  id           String     @id @default(cuid())
+  collectionId String
+  mediaId      String
+  orderIndex   Int        @default(1)
+  createdAt    DateTime   @default(now())
+  library      Collection @relation(fields: [collectionId], references: [id])
+  media        Media      @relation(fields: [mediaId], references: [id])
+
+  @@map("collection_items")
+}

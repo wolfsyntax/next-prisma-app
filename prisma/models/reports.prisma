@@ -1,0 +1,27 @@
+model Report {
+  id             String           @id @default(cuid())
+  reporterId     String
+  reportableId   String?
+  reportableType ReportType       @default(Post)
+  reason         String?
+  status         ResolutionStatus @default(Pending)
+  createdAt      DateTime         @default(now())
+  reporter       Profile          @relation(fields: [reporterId], references: [id], onDelete: Cascade)
+
+  @@map("reports")
+}
+
+enum ReportType {
+  Post      @map("post")
+  Comment   @map("comment")
+  Profile   @map("profile")
+  Community @map("community")
+  Message   @map("message")
+  Product   @map("product")
+}
+
+enum ResolutionStatus {
+  Pending  @map("pending")
+  Reviewed @map("reviewed")
+  Resolved @map("resolved")
+}

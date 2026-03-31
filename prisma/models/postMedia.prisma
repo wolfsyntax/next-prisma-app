@@ -1,0 +1,10 @@
+model PostMedia {
+  id      String @id @default(cuid())
+  postId  String @map("post_id")
+  mediaId String @map("media_id")
+  post    Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+  media   Media  @relation(fields: [mediaId], references: [id], onDelete: Cascade)
+
+  @@unique([postId, mediaId])
+  @@map("post_media")
+}

@@ -1,0 +1,11 @@
+model AppUsage {
+  id        String    @id @default(cuid())
+  profileId String    @map("profile_id")
+  startedAt DateTime  @default(now()) @map("start_at")
+  endedAt   DateTime? @map("end_at")
+  profile   Profile   @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("app_usages")
+}

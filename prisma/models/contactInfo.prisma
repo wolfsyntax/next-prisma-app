@@ -1,0 +1,16 @@
+model ContactInfo {
+  id          String          @id @default(cuid())
+  contact     String
+  contactType ContactCategory @default(Phone) @map("type")
+  profileId   String          @map("profile_id")
+  profile     Profile         @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@map("contact_info")
+}
+
+enum ContactCategory {
+  Email    @map("email")
+  Phone    @map("phone")
+  WhatsApp @map("whatsApp")
+  Viber    @map("viber")
+}

@@ -1,7 +1,6 @@
 model Media {
   id             String         @id @default(cuid())
   profileId      String         @map("profile_id")
-  profile        Profile        @relation(fields: [profileId], references: [id], onDelete: Cascade)
   mediaType      MediaType      @map("type")
   category       Category
   file_path      String?
@@ -10,6 +9,14 @@ model Media {
   size           Decimal?       @default(0)
   visibility     VisibilityType
   createdAt      DateTime       @default(now())
+
+  profile         Profile          @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  avatarFor       Profile[]        @relation("AvatarMedia")
+  coverFor        Profile[]        @relation("CoverMedia")
+  collectionItems CollectionItem[]
+  videos          Video[]
+  communities     Community[]
+  postMedias      PostMedia[]
 
   //   collectionItems CollectionItems[]
   @@map("media")

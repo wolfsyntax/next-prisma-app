@@ -1,0 +1,10 @@
+model Follow {
+  followerId  String @map("follower_id")
+  followingId String @map("following_id")
+
+  follower  Profile @relation("followers", fields: [followerId], references: [id], onDelete: Cascade)
+  following Profile @relation("following", fields: [followingId], references: [id], onDelete: Cascade)
+createdAt DateTime @default(now())
+  @@unique([followerId, followingId])
+  @@map("follows")
+}

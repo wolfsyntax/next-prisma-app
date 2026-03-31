@@ -7,7 +7,7 @@ CREATE TABLE `accounts` (
     `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `deleted_at` DATETIME(3) NULL,
 
-    UNIQUE INDEX `accounts_provider_user_id_key`(`provider`, `user_id`),
+    UNIQUE INDEX `accounts_provider_provider_uid_key`(`provider`, `provider_uid`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 

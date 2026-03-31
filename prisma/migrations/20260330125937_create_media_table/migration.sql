@@ -9,10 +9,10 @@ CREATE TABLE `Media` (
     `duration` INTEGER NULL DEFAULT 0,
     `size` DECIMAL(65, 30) NULL DEFAULT 0,
     `visibility` ENUM('public', 'private', 'friends') NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `create_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- AddForeignKey
-ALTER TABLE `Media` ADD CONSTRAINT `Media_profile_id_fkey` FOREIGN KEY (`profile_id`) REFERENCES `profiles`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `Media` ADD CONSTRAINT `media_profile_id_fkey` FOREIGN KEY (`profile_id`) REFERENCES `profiles`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;

@@ -1,0 +1,19 @@
+model Collection {
+  id              String           @id @default(cuid())
+  profileId       String           @map("profile_id")
+  name            String?
+  type            CollectionType   @default(Photo)
+  isPublic        Boolean          @default(true) @map("is_public")
+  profile         Profile?         @relation(fields: [profileId], references: [id])
+  collectionItems CollectionItem[]
+
+  @@unique([name, profileId])
+  @@map("collections")
+}
+
+enum CollectionType {
+  Photo    @map("photo")
+  Video    @map("video")
+  Song     @map("song")
+  Document @map("document")
+}

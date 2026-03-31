@@ -1,13 +1,14 @@
 model Account {
   id          String    @id @default(cuid())
   userId      String    @map("user_id")
-  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   provider    String // google.com, facebook.com, github.com, password, phone
   providerUid String    @map("provider_uid")
   createdAt   DateTime  @default(now()) @map("created_at")
   deletedAt   DateTime? @map("deleted_at")
   // posts       Post[]
 
-  @@unique([provider, userId])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerUid])
   @@map("accounts")
 }

@@ -4,7 +4,6 @@ model User {
   lastName        String?   @map("last_name")
   email           String    @unique
   phone           String    @unique
-  // bio             String    @db.Text
   date_of_birth   DateTime? @db.Date
   // account_type    AccountType @default(Child)
   photoUrl        String?   @map("photo_url")
@@ -16,10 +15,6 @@ model User {
   createdAt       DateTime  @default(now()) @map("created_at")
   updatedAt       DateTime  @updatedAt @map("updated_at")
   deletedAt       DateTime? @map("deleted_at")
-  // profiles        Profile[]
-  // media           Media[]
-  // mediaCollections Collection[]
-  // media            Media[]
   accounts        Account[]
   profiles        Profile[]
 
