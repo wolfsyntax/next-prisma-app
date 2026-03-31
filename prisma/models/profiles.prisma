@@ -31,8 +31,11 @@ model Profile {
   posts         Post[]
   comments      Comment[]
 
-  followers Follow[] @relation("followers")
-  following Follow[] @relation("following")
+  followers     Follow[]       @relation("followers")
+  following     Follow[]       @relation("following")
+  reactions     Reaction[]
+  stories       Story[]
+  subscriptions Subscription[]
 
   @@map("profiles")
 }

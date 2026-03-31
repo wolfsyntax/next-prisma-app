@@ -1,0 +1,11 @@
+model Story {
+  id        String    @id @default(cuid())
+  profileId String    @map("profile_id")
+  mediaId   String    @map("media_id")
+  expiredAt DateTime?
+  createdAt DateTime  @default(now()) @map("created_at")
+  profile   Profile   @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  media     Media     @relation(fields: [mediaId], references: [id], onDelete: Cascade)
+
+  @@map("stories")
+}

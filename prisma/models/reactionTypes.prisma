@@ -1,0 +1,17 @@
+model ReactionType {
+  id        String     @id @default(cuid())
+  iconPath  String     @map("icon_path")
+  iconType  IconType   @default(Url) @map("icon_type")
+  createdAt DateTime   @default(now()) @map("created_at")
+  updatedAt DateTime   @updatedAt @map("updated_at")
+  deletedAt DateTime?  @map("deleted_at")
+  reactions Reaction[]
+
+  @@map("reaction_types")
+}
+
+enum IconType {
+  Url     @map("url")
+  SvgCode @map("svg-code")
+  SvgPath @map("svg-path")
+}

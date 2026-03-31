@@ -7,8 +7,9 @@ model Channel {
   createdAt   DateTime @default(now()) @map("created_at")
   updatedAt   DateTime @updatedAt @map("updated_at")
 
-  owner  Profile @relation(fields: [profileId], references: [id])
-  videos Video[]
+  owner         Profile        @relation(fields: [profileId], references: [id])
+  videos        Video[]
+  subscriptions Subscription[]
 
   @@unique([name, link])
   @@map("channels")

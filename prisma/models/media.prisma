@@ -17,6 +17,7 @@ model Media {
   videos          Video[]
   communities     Community[]
   postMedias      PostMedia[]
+  stories         Story[]
 
   //   collectionItems CollectionItems[]
   @@map("media")

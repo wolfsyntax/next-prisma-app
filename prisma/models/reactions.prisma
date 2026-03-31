@@ -1,0 +1,21 @@
+model Reaction {
+  profileId     String       @map("profile_id")
+  reactableId   String       @map("reactable_id")
+  reactableType Reactable    @default(Post) @map("reactable_type")
+  reactionType  String       @map("type")
+  createdAt     DateTime     @default(now()) @map("created_at")
+  profile       Profile      @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  reactType     ReactionType @relation(fields: [reactionType], references: [id], onDelete: Cascade)
+
+  @@unique([profileId, reactableId])
+  @@map("reactions")
+}
+
+enum Reactable {
+  Post     @map("post")
+  Comment  @map("comment")
+  Photo    @map("photo")
+  Video    @map("video")
+  Song     @map("song")
+  Document @map("document")
+}

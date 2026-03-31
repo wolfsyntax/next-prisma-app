@@ -1,0 +1,11 @@
+model Subscription {
+  profileId String
+  channelId String
+
+  profile   Profile  @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  channel   Channel  @relation(fields: [channelId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([profileId, channelId])
+  @@map("subscriptions")
+}
